@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>作用域</title>
+</head>
+<body ng-app="app">
+    <div ng-controller="ctrl1">
+        <h1>{{name}}</h1>
+        <h2>{{text}}</h2>
+    </div>
+    <div ng-controller="ctrl2">
+        <h1>{{name}}</h1>
+        <h2>{{text}}</h2>
+    </div>
+
+    <script type="text/javascript" src="angular.js"></script>
+    <script type="text/javascript">
+        var app = angular.module("app",[]);
+        app.controller("ctrl1",function($rootScope,$scope){
+            $rootScope.name = "rootname";
+            $scope.text = "scopeTest1";
+        });
+        app.controller("ctrl2",function($scope){
+            $scope.text = "scopeTest2";
+        });
+    </script>
+</body>
+</html>
