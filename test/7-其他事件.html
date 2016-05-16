@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body ng-app="app">
+    <form ng-controller="ctrl">
+      <input type="text" ng-blue="fun()">
+      <!-- ng-blue无效 可以使用ng-click -->
+    </form>
+    <script src="../angular.js"></script>
+    <script>
+      var myApp = angular.module("app",[]);
+      myApp.controller("ctrl",function($scope){
+        $scope.fun = function(){
+          alert("失去焦点");
+        }
+      })
+    </script>
+  </body>
+</html>
