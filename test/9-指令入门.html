@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<hello-world>safasf</hello-world>
+	<fruit></fruit>
+
+	<script type="text/javascript" src="../angular.js"></script>
+	<script type="text/javascript">
+		var myApp = angular.module("app",[]);
+		//指令名区分大小写，如果是驼峰命名，使用的时候可以写成hello-world
+		myApp.directive("helloWorld",function(){  
+			return {
+				restrict:"E",  //哪种类型的指令
+				replace:true, //是否替换掉指令的html元素
+				template:"<h1>你好，这是一个自定义的hello指令</h1>"  //模板 
+			}
+		});
+		// myApp.directive("fruit",function(){
+		// 	return {
+		// 		restrict:"E",
+		// 		replace:"ture",
+		// 		templateUrl:"template/fruitList.html"
+		// 	}
+		// })
+	</script>
+</body>
+</html>
