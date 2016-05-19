@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div hello-world></div>
+	<hello-world></hello-world>
+	<div class="hello-world"></div>
+	<!-- directive:hello-world -->
+	<!-- fruit指令 -->
+	<fruit></fruit>
+
+	<!-- transclude -->
+	<hello>
+		<span>lee</span>
+	</hello>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.directive("helloWorld",function(){
+			return {
+				restrict:"AECM",  //必须大写；默认AE
+				replace:true,  //是否替换原元素
+				template:"<h1>这是一个指令</h1>"
+			}
+		})
+		app.directive("fruit",function(){
+			return {
+				templateUrl:"html/tem.html"  //引入外部模板
+			}
+		})
+
+		app.directive("hello",function(){
+			return {
+				transclude:true,
+				template:"<h1>hello指令的内容<div ng-transclude></div></h1>"
+			}
+		})
+
+	</script>
+</body>
+</html>

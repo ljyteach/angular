@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	
+	<div ng-controller="ctrl">
+		<my-dir></my-dir>	
+	</div>
+	
+	<script src="script/angular.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope){
+			$scope.showInfo = function(){
+				console.log("hello")
+			}
+		})
+		app.directive("myDir",function(){
+			return {
+				template:"<input type='button' value='按钮'>",
+				link:function(scope,element,attr){   //形参可以随意些
+					element.bind("click",function(){
+						scope.showInfo();
+						scope.$apply("showInfo()");  //两种方法都可以调用
+					})
+				}
+			}
+		})
+
+	</script>
+</body>
+</html>

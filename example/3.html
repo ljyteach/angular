@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl">
+		<span>数字{{num}}</span>
+		<input ng-click="plus()" type="button" value="+1">
+		<input ng-click="reduce()" type="button" value="-1">
+	</div>
+	
+
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope){
+			$scope.num = 0;
+			$scope.plus = function(){
+				this.num++;
+			}
+			$scope.reduce = function(){
+				this.num--;
+			}
+		})
+	</script>
+</body>
+</html>
