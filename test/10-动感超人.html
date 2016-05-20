@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div>
+		<superman strength>力量</superman>	
+	</div>
+	<div>
+		<superman strength speed>力量 速度</superman>	
+	</div>
+	<div>
+		<superman strength speed light>力量 速度 发光</superman>	
+	</div>
+
+	<script src="script/angular.js"></script>
+	<script>
+		//指令之间的交互
+		var app = angular.module("app",[]);
+		app.directive("superman",function(){
+			return {
+				//创建独立作用域，如果不创建，作用域统一使用
+				scope:{},  
+				//指令中的controller与MVC中的controller不同,指令内部的controller用于暴漏指令内部的方法,外部指令可以调用
+				controller:function($scope){
+					$scope.abilities = [];
+					//this是谁：return的对象？
+					this.addStrength = function(){
+						$scope.abilities.push("strength");
+					};
+					this.addSpeed = function(){
+						$scope.abilities.push("speed");
+					};
+					this.addLight = function(){
+						$scope.abilities.push("light");
+					};
+				},
+				//指令内部操作DOM用link方法处理
+				link:function(scope,element,attrs){
+					element.bind("click",function(){    //angular中内置jqlite，是简化版的jQuery，语法与jQuery相同。
+						console.log(scope.abilities);
+					})
+				}
+			}
+		});
+		app.directive("strength",function(){
+			return {
+				require:"^superman",  
+				//依赖其他指令，设置require之后就可以使用link中的第四个参数，第四个参数可以调用依赖指令中controller内的方法
+				link:function(scope,element,attrs,supermanCtrl){
+					supermanCtrl.addStrength();
+				}
+			}
+		});
+		app.directive("speed",function(){
+			return {
+				require:"^superman",
+				link:function(scope,element,attrs,supermanCtrl){
+					supermanCtrl.addSpeed();
+				}
+			}
+		});
+		app.directive("light",function(){
+			return {
+				require:"^superman",
+				link:function(scope,element,attrs,supermanCtrl){
+					supermanCtrl.addLight();
+				}
+			}
+		});
+	</script>
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl">
+		<h3>控制器</h3>
+		<input ng-model="txt" type="text">	
+		<h3>指令</h3>
+		<myinput data="txt"></myinput>
+	</div>
+
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+
+		app.controller("ctrl",function($scope){
+			
+		})
+
+		app.directive("myinput",function(){
+			return {
+				template:"<input ng-model='data'>",
+				scope:{
+					data:"="
+				}
+				// link:function(scope,element,attrs){
+				// 	// scope.txt = attrs.data;
+				// }
+			}
+		})
+	</script>
+</body>
+</html>

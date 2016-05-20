@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>独立的scope</title>
+</head>
+<body ng-app="app">
+	<mydir></mydir>
+	<mydir></mydir>
+	<mydir></mydir>
+
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.directive("mydir",function(){
+			return {
+				scope:{},//添加独立的作用域，指令之间作用域互不影响
+				template:"<div><input ng-model='name'><span>{{name}}</span></div>"
+			}
+		})
+	</script>
+</body>
+</html>

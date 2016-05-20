@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<form ng-submit="save()" ng-controller="ctrl">
+		<input type="text" name="username" ng-model="user.userName" required>
+		<input type="password" name="password" ng-model="user.password" required>
+		<input type="submit">
+	</form>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope){
+			$scope.user = {
+				userName:"hahaha"
+			}
+			$scope.save=function(){
+				alert("提交表单");
+			}
+		})
+	</script>
+</body>
+</html>

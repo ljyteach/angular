@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	
+	<div ng-controller="ctrl">
+		<mydir data="{{mydata}}"></mydir>
+	</div>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope){
+			$scope.mydata = "数据";
+		})
+		app.directive("mydir",function(){
+			return {
+				template:"<div>{{data}}</div>",
+				scope:{
+					data:"@"  //自动绑定，不用绑定link函数
+				}
+				// link:function(scope,element,attrs){
+				// 	//属性值绑定内容值
+				// 	scope.data = attrs.data
+				// }
+			}
+		})
+	</script>
+</body>
+</html>
