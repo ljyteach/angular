@@ -10,23 +10,41 @@
 
     <div ng-controller="ctrl">
         <h1>my controller:{{clock.now}}</h1>
+        <span>{{myTime.hours}}</span>
+        <span>{{myTime.minutes}}</span>
+        <span>{{myTime.seconds}}</span>
     </div>
 
     <script type="text/javascript" src="angular.js"></script>
     <script type="text/javascript">
         var app = angular.module("app",[]);
 
+        // app.controller("ctrl",function($scope){
+        //     $scope.clock = {
+        //         now : new Date(),
+        //     };
+        //     var updateClock = function(){
+        //         $scope.clock.now = new Date();
+        //     };
+        //     setInterval(function(){
+        //         $scope.$apply(updateClock);     // $apply ????
+        //     },1000)
+        //     //setInterval(updateClock,1000);   // why not write like this
+        // })
+
         app.controller("ctrl",function($scope){
-            $scope.clock = {
-                now : new Date(),
-            };
-            var updateClock = function(){
-                $scope.clock.now = new Date();
-            };
+            function getTime(){
+                var timeNow = new Date();
+                $scope.myTime = {
+                    hours:timeNow.getHours(),
+                    minutes:timeNow.getMinutes(),
+                    seconds:timeNow.getSeconds()
+                }
+            }
+            
             setInterval(function(){
-                $scope.$apply(updateClock);     // $apply ????
+                $scope.$apply(getTime);
             },1000)
-            //setInterval(updateClock,1000);   // why not write like this
         })
 
         // app.controller("ctrl",function($scope,$timeout){
