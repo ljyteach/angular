@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<h1>计数器</h1>
+	<count></count>
+	<br>
+	<count></count>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.directive("count",function(){
+			return {
+				scope:{},
+				template:"<input value='{{num}}'><input ng-click='add()' type='button' value='+'><input ng-click='sub()' type='button' value='-'>",
+				link:function(scope,element,attrs){
+					scope.num = 0;
+					scope.add = function(){
+						scope.num++;
+					};
+					scope.sub = function(){
+						scope.num--;
+					}
+
+				}
+			}
+		})
+	</script>
+</body>
+</html>

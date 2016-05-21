@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<h1>水果</h1>
+	<div ng-controller="ctrl">
+		<add-node></add-node>
+		<ul ng-repeat="fruit in fruits">
+			<li>{{fruit}}</li>
+		</ul>
+	</div>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope){
+			$scope.fruits = ["香蕉","苹果","鸭梨"];
+			
+		})
+		app.directive("addNode",function(){
+			return {
+				template:'<input type="text"><input type="button" value="添加" ng-click="addNode()">',
+				link:function(scope,element,attrs){
+					scope.addNode = function(){
+						scope.fruits.push("haha");
+						scope.fruits.push("hehe");
+					}
+				}
+			}
+		})
+	</script>
+</body>
+</html>
