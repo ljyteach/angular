@@ -1,10 +1,42 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="zh" ng-app="app">
 <head>
 	<meta charset="UTF-8">
-	<title>Document</title>
+	<title>DOCUMENT</title>
 </head>
-<body>
-	
+<body ng-app="app">
+	<h1>路由</h1>
+	<ul>
+		<li><a href="#home">首页</a></li>
+		<li><a href="#movie">电影</a></li>
+		<li><a href="#music">音乐</a></li>
+	</ul>
+	<div ng-view></div>
+	<script src="script/angular.js"></script>
+	<script src="script/angular-route.js"></script>
+	<script type="text/javascript">
+		var app = angular.module("app",["ngRoute"]);
+		app.config(function($routeProvider){
+			$routeProvider.when("/home",{
+				templateUrl:"template/home.html",
+				controller:"homeCtrl"
+			}).when("/movie",{
+				templateUrl:"template/movie.html",
+				controller:"movieCtrl"
+			}).when("/music",{
+				templateUrl:"template/music.html",
+				controller:"musicCtrl"
+			})
+		})
+		app.controller("homeCtrl",function($scope){
+			$scope.names = ["lily","lucy","lilei"]
+		})
+		app.controller("movieCtrl",function($scope){
+			
+		})
+		app.controller("musicCtrl",function($scope){
+			
+		})
+	</script>
 </body>
 </html>

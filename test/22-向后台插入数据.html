@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<h1>插入数据</h1>
+	<div ng-controller="ctrl">
+		<form ng-submit="save()">
+			<input type="text" name="username" ng-model="user.userName" required>
+			<input type="submit">
+		</form>
+		<ul ng-repeat="name in usernames">
+			<li>{{name}}</li>
+		</ul>
+	</div>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope,$http){
+			$http({
+				method:"get",
+				url:"/getData"
+			}).success(function(data){
+				$scope.usernames = data;
+			})
+			$scope.save = function(){
+				$http({
+					method:"get",
+					url:"/insert",
+					params:{"username":$scope.user.userName}
+				}).success(function(data){
+					$scope.usernames = data;
+				})
+			}
+
+		})	
+	</script>
+</body>
+</html>

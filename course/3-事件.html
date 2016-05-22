@@ -3,26 +3,27 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Document</title>
+	<style type="text/css">
+		.box{
+			width:100px;
+			height:100px;
+			background-color: #f00;
+		}
+	</style>
 </head>
 <body ng-app="app">
-	<h1>水果</h1>
+	<h1>事件</h1>
 	<div ng-controller="ctrl">
-		<input type="text">
-		<input type="button" value="添加" ng-click="addNode()">
-		<ul ng-repeat="fruit in fruits">
-			<li>{{fruit}}</li>
-		</ul>
+		<input type="button" value="按钮" ng-click="sayHello()">
+		<div class="box" ng-mouseenter="sayHello()"></div>
 	</div>
 	<script src="script/angular.js"></script>
 	<script>
 		var app = angular.module("app",[]);
 		app.controller("ctrl",function($scope){
-			$scope.fruits = ["香蕉","苹果","鸭梨"];
-			$scope.addNode = function(){
-				this.fruits.push("haha");
-				console.log(this.fruits)
+			$scope.sayHello = function(){
+				console.log("hello");
 			}
-
 		})
 	</script>
 </body>

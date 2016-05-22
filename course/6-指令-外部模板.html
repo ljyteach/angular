@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	
+	<mydir></mydir>
+
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.directive("mydir",function(){
+			return {
+				templateUrl:"template/hello.html"
+			}
+		})
+	</script>
+</body>
+</html>

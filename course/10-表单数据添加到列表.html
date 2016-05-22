@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<h1>表单数据添加到列表中</h1>
+	<div ng-controller="ctrl">
+		<form ng-submit="save()">
+			<input type="text" ng-model="username">
+			<input type="submit" value="添加节点">
+		</form>
+		<ul ng-repeat="name in names">
+			<li ng-bind="name"></li>
+		</ul>
+	</div>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope){
+			$scope.names = ["香蕉","苹果","鸭梨"];
+			$scope.save = function(){
+				this.names.push(this.username);
+				//添加相同的数据会报错
+			}
+		})
+	</script>
+</body>
+</html>

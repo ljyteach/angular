@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl">
+		<myajax></myajax>
+		<myajax></myajax>
+	</div>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope){
+
+		});
+		app.directive("myajax",function($http){
+			return {
+				template:"<ul ng-repeat='name in names'><li ng-bind='name'></li></ul>",
+				link:function(scope,element,attrs){
+					$http({
+						method:"get",
+						url:"/getData"
+					}).success(function(data){
+						scope.names = data;
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>

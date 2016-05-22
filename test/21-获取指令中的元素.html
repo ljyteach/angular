@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<h1>指令中使用jqlite获取元素</h1>
+	<mydir></mydir>
+
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.directive("mydir",function(){
+			return {
+				template:'<input type="text"><input id="btn" type="button" value="添加">',
+				link:function(scope,element,attrs){
+					element.find("input").eq(1).bind("click",function(){
+						console.log(this);
+					})
+				}
+			}
+		})
+	</script>
+</body>
+</html>

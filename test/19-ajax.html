@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl">
+		<ul ng-repeat="name in names">
+			<li ng-bind="name"></li>
+		</ul>
+	</div>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope,$http){
+			$http({
+				method:"get",
+				url:"/getData"
+			}).success(function(data){
+				$scope.names = data;
+			})
+		})
+	</script>
+</body>
+</html>
