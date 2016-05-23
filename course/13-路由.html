@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<ul>
+		<li><a href="#student">学生管理</a></li>
+		<li><a href="#user">用户管理</a></li>
+		<li><a href="#book">书籍管理</a></li>
+	</ul>
+	<div ng-view></div>
+
+	<script src="script/angular.js"></script>
+	<script src="script/angular-route.js"></script>
+	<script>
+		var app = angular.module("app",["ngRoute"]);
+		app.config(function($routeProvider){
+			$routeProvider.when("/student",{
+				templateUrl:"template/student.html",
+				controller:"studentCtrl"
+			}).when("/user",{
+				templateUrl:"template/user.html",
+				controller:"userCtrl"
+			}).when("/book",{
+				templateUrl:"template/book.html",
+				controller:"bookCtrl"
+			});
+		});
+		app.controller("userCtrl",function($scope){
+			$scope.users = ["Tony","lucy","lily"];
+		})
+	</script>
+</body>
+</html>

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body ng-app="app">
+	<div ng-controller="ctrl">
+		<form ng-submit="getData()">
+			<input type="submit" value="获取数据">
+		</form>
+		<ul ng-repeat="fruit in fruits">
+			<li ng-bind="fruit"></li>
+		</ul>
+	</div>
+	<script src="script/angular.js"></script>
+	<script>
+		var app = angular.module("app",[]);
+		app.controller("ctrl",function($scope,$http){
+			$scope.getData = function(){
+				$http({
+					method:"get",
+					url:"/getFruits"
+				}).success(function(data){
+					$scope.fruits = data;
+				})
+			}
+			
+		})
+	</script>
+</body>
+</html>
